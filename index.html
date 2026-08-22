@@ -129,5 +129,12 @@ function clearAll(){if(confirm('Delete ALL tracker data from this browser? This 
 document.getElementById('waterGoal').addEventListener('change',e=>{state.settings.waterGoal=Math.max(0,Number(e.target.value)||0);save();render()});
 loadVault();
 </script>
+  <script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js");
+  });
+}
+  </script>
 </body>
 </html>
