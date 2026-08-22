@@ -1,10 +1,22 @@
 {
-  "name": "My Daily Tracker",
-  "short_name": "Daily Tracker",
+  "name": "VR Kudale Daily Tracker",
+  "short_name": "VR Kudale",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#f5f7fb",
   "theme_color": "#111827",
-  "description": "My personal daily habit and life tracker",
-  "icons": []
+  "description": "My personal daily habit, fitness and consistency tracker",
+  "icons": [
+    {
+      "src": "./icon-192-vr-kudale.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon-512-vr-kudale.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }
+
