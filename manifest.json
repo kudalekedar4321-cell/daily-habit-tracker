@@ -1,0 +1,10 @@
+{
+  "name": "My Daily Tracker",
+  "short_name": "Daily Tracker",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f5f7fb",
+  "theme_color": "#111827",
+  "description": "My personal daily habit and life tracker",
+  "icons": []
+}
