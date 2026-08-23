@@ -8,12 +8,12 @@
   "description": "My personal daily habit, fitness and consistency tracker",
   "icons": [
     {
-      "src": "./icon-192-vr-kudale.png",
+      "src": "./fitness_tracker_app_icon.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "./icon-512-vr-kudale.png",
+      "src": "./fitness_tracker_app_icon.png",
       "sizes": "512x512",
       "type": "image/png"
     }
