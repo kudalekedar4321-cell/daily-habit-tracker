@@ -134,7 +134,62 @@ function waterAdd(n){day().water+=n;save();render();toast('Water updated 💧')}
 function setWater(){let n=prompt('Total water today (ml):',day().water);if(n!==null){day().water=Math.max(0,Number(n)||0);save();render()}}
 function saveBasic(){let d=day();for(let id of ['bed','wake','sleepQuality','exercise','steps','breakfast','lunch','dinner','snacks','screen','mood','rating','notes']){let e=document.getElementById(id);if(e)d[id]=e.value}save();render();toast('Saved ✓')}
 function saveStudy(){let d=day();d.studyHours=Number(document.getElementById('studyHours').value)||0;d.studySubject=document.getElementById('studySubject').value;d.studyTopic=document.getElementById('studyTopic').value;save();render();toast('Study saved 📚')}
-function addExpense(){let a=Number(document.getElementById('expenseAmount').value)||0,n=document.getElementById('expenseNote').value.trim();if(!a)return;day().expenses.push({amount:a,note:n});document.getElementById('expenseAmount').value='';document.getElementById('expenseNote').value='';save();render();toast('Expense added 💰')}
+function addFood(){
+  const name=document.getElementById('foodName').value.trim();
+  const grams=Number(document.getElementById('foodGrams').value);
+  const type=document.getElementById('foodType').value;
+
+  if(!name || !grams || grams<=0){
+    toast('Enter food name and grams');
+    return;
+  }
+
+  let per100=0;
+  const food=name.toLowerCase();
+
+  if(food.includes('rice')){
+    per100=type==='cooked'?130:365;
+  }else if(food.includes('roti')||food.includes('chapati')){
+    per100=297;
+  }else if(food.includes('dal')){
+    per100=type==='cooked'?116:350;
+  }else if(food.includes('egg')){
+    per100=155;
+  }else if(food.includes('banana')){
+    per100=89;
+  }else{
+    const custom=Number(prompt('Calories per 100g for '+name+':'));
+    if(!custom||custom<=0)return;
+    per100=custom;
+  }
+
+  const calories=Math.round(grams/100*per100);
+  const d=day();
+
+  d.foods=d.foods||[];
+  d.foodCalories=(d.foodCalories||0)+calories;
+
+  d.foods.push({
+    name:name,
+    grams:grams,
+    type:type,
+    calories:calories
+  });
+
+  save();
+
+  document.getElementById('foodResult').textContent=
+    name+' • '+grams+'g • '+calories+' kcal';
+
+  document.getElementById('foodCalories').textContent=
+    d.foodCalories;
+
+  document.getElementById('foodName').value='';
+  document.getElementById('foodGrams').value='';
+
+  toast('Food added');
+}
+  function addExpense(){let a=Number(document.getElementById('expenseAmount').value)||0,n=document.getElementById('expenseNote').value.trim();if(!a)return;day().expenses.push({amount:a,note:n});document.getElementById('expenseAmount').value='';document.getElementById('expenseNote').value='';save();render();toast('Expense added 💰')}
 function renderExpenses(){let ex=day().expenses||[],tot=ex.reduce((a,x)=>a+x.amount,0);document.getElementById('expenseList').innerHTML=ex.map((x,i)=>`<div class="listitem row"><span>₹${x.amount} <span class="muted">${esc(x.note)}</span></span><button class="btn danger small" onclick="delExpense(${i})">Delete</button></div>`).join('')+(ex.length?`<div class="row" style="margin-top:10px"><b>Total today</b><b>₹${tot}</b></div>`:'')}
 function delExpense(i){day().expenses.splice(i,1);save();render()}
 function streak(id){let n=0,d=new Date();for(let i=0;i<365;i++){let k=new Date(d);k.setDate(d.getDate()-i);let kk=k.toISOString().slice(0,10);if(state.days[kk]?.habits?.[id])n++;else if(i>0)break}return n}
