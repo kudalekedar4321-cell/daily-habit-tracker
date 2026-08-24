@@ -46,6 +46,27 @@
     <div class="card"><h2 class="title">📱 Screen time</h2><input id="screen" class="input" placeholder="e.g. 3h 20m"><label>Mood</label><select id="mood" class="input"><option>😀 Great</option><option>🙂 Good</option><option>😐 Normal</option><option>😕 Low</option><option>😞 Bad</option></select><button class="btn" style="width:100%;margin-top:10px" onclick="saveBasic()">Save</button></div>
     <div class="card"><h2 class="title">💰 Expenses</h2><div class="two"><div><label>Amount (₹)</label><input id="expenseAmount" class="input" type="number" min="0"></div><div><label>For</label><input id="expenseNote" class="input" placeholder="Food, travel..."></div></div><button class="btn" style="width:100%;margin-top:10px" onclick="addExpense()">Add expense</button><div id="expenseList"></div></div>
     <div class="card"><h2 class="title">⭐ Day rating</h2><select id="rating" class="input"><option value="5">5 — Amazing</option><option value="4">4 — Good</option><option value="3">3 — Average</option><option value="2">2 — Difficult</option><option value="1">1 — Bad</option></select><label>Notes / journal</label><textarea id="notes" rows="5" placeholder="What happened today? What went well? What should improve?"></textarea><button class="btn" style="width:100%;margin-top:10px" onclick="saveBasic()">Save day</button></div>
+    <div class="card">
+  <h2 class="title">🍽️ Food & Calories</h2>
+
+  <input id="foodName" class="input" placeholder="Food name (e.g. rice)">
+
+  <input id="foodGrams" class="input" type="number" placeholder="Quantity in grams">
+
+  <select id="foodType" class="input">
+    <option value="cooked">Cooked</option>
+    <option value="uncooked">Uncooked</option>
+  </select>
+
+  <button class="btn" onclick="addFood()">Add Food</button>
+
+  <div id="foodResult" class="small muted"></div>
+
+  <div style="margin-top:12px">
+    🔥 Today's calories:
+    <strong id="foodCalories">0</strong> kcal
+  </div>
+    </div>
   </div>
 </section>
 
